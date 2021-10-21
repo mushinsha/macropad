@@ -38,16 +38,17 @@ void loop()
   // 0 = not turning, 1 = CW, 2 = CCW
   i = rotary.rotate();
 
-  if( i == 1 ) 
-      {
-      Consumer.write(MEDIA_VOLUME_DOWN);
-      delay(25);
-      }
   
-  if( i == 2 ) 
+  if( i == 1 ) // MEDIA VOLUME UP
       {
       Consumer.write(MEDIA_VOLUME_UP);
-      delay(25);
+      delay(50);
+      }
+      
+  if( i == 2 ) // MEDIA VOLUME DOWN
+      {
+      Consumer.write(MEDIA_VOLUME_DOWN);
+      delay(50);
       }
   
   if(digitalRead(6)==LOW)// F20
@@ -62,7 +63,7 @@ void loop()
       delay(50);
       }
   
-  if(digitalRead(8)==LOW)//toggle headset
+  if(digitalRead(8)==LOW)// F23
       {
       Keyboard.write(KEY_F23);
       delay(50);
