@@ -6,8 +6,8 @@
 
 ////////////////////////////////////////////// PINOUT
 //          Key Pin layout
-//    Rotary, 16, 8, 7, 15, 6
-//      LED Strip Pin 10
+//     Rotary, 16, 8, 7, 15, 6
+//          LED Strip Pin 10
 //////////////////////////////////////////////  KEY PINS
 
 // Pin A (CCW), Pin B (CW), Button Pin
@@ -22,7 +22,7 @@ SimpleRotary rotary(2,3,A0);
 //////////////////////////////////////////////  LED SECTION
 
 // How many leds in your strip?
-#define NUM_LEDS 6
+#define NUM_LEDS 23
 #define BRIGHTNESS 255
 #define COLOR_ORDER GRB
 #define LED_TYPE WS2812
@@ -34,7 +34,7 @@ SimpleRotary rotary(2,3,A0);
 CRGB leds[NUM_LEDS];
 ////////////////////////////////////////////// MAIN SETUP
 
-void setup() 
+void setup()
 {
   Keyboard.begin();
   Consumer.begin();
