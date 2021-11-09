@@ -39,23 +39,29 @@ SimpleRotary rotary(2,3,A0);
 // Define the array of leds
 CRGB leds[NUM_LEDS];
 
-////////////////////////////////////////////// WS2812B LED Rainbow Wave
+// WS2812B LED Rainbow Wave
 
-CRGB Scroll(int pos) {
+CRGB Scroll(int pos) 
+{
   CRGB color (0,0,0);
-  if(pos < 85) {
-    color.g = 0;
-    color.r = ((float)pos / 85.0f) * 255.0f;
-    color.b = 255 - color.r;
-  } else if(pos < 170) {
-    color.g = ((float)(pos - 85) / 85.0f) * 255.0f;
-    color.r = 255 - color.g;
-    color.b = 0;
-  } else if(pos < 256) {
-    color.b = ((float)(pos - 170) / 85.0f) * 255.0f;
-    color.g = 255 - color.b;
-    color.r = 0;
-  }
+  if(pos < 85) 
+    {
+      color.g = 0;
+      color.r = ((float)pos / 85.0f) * 255.0f;
+      color.b = 255 - color.r;
+    } 
+  else if(pos < 170) 
+    {
+      color.g = ((float)(pos - 85) / 85.0f) * 255.0f;
+      color.r = 255 - color.g;
+      color.b = 0;
+    } 
+  else if(pos < 256) 
+    {
+      color.b = ((float)(pos - 170) / 85.0f) * 255.0f;
+      color.g = 255 - color.b;
+      color.r = 0;
+    }
   return color;
 }
 
@@ -79,11 +85,14 @@ void setup()
 
 //////////////////////////////////////////// MAIN LOOP
 
-void loop() {
-  for(int j = 0; j < 256; j++) {
-    for(int i = 0; i < NUM_LEDS; i++) {
-      leds[i] = Scroll((i * 256 / NUM_LEDS + j) % 256);      
-    }
+void loop() 
+{
+  for(int j = 0; j < 256; j++)
+    {
+      for(int i = 0; i < NUM_LEDS; i++) 
+        {
+        leds[i] = Scroll((i * 256 / NUM_LEDS + j) % 256);      
+        }
 
     FastLED.show();
     delay(1);
@@ -100,19 +109,19 @@ void loop() {
   if( f == 1 ) // MEDIA VOLUME UP
       {
       Consumer.write(MEDIA_VOLUME_UP);
-      delay(50);
+        delay(50);
       }
 
   if( f == 2 ) // MEDIA VOLUME DOWN
       {
       Consumer.write(MEDIA_VOLUME_DOWN);
-      delay(50);
+        delay(50);
       }     
         
   if(digitalRead(A0)==LOW)// TOGGLE MUTE
       {
       Consumer.write(MEDIA_VOL_MUTE);
-      delay(200);
+        delay(200);
       }
 
 ////////////////////////////////////////////// CASEY'S KEY INPUTS
@@ -122,7 +131,7 @@ void loop() {
       Keyboard.press(KEY_LEFT_GUI);
       Keyboard.press ('l');
       Keyboard.releaseAll ();
-      delay(50);
+        delay(50);
       }
 
   if(digitalRead(15)==LOW)// MINIMIZE TO DESKTOP
@@ -130,58 +139,58 @@ void loop() {
       Keyboard.press(KEY_LEFT_GUI);
       Keyboard.press ('d');
       Keyboard.releaseAll ();
-      delay(50);
+        delay(50);
       }
       
   if(digitalRead(7)==LOW)// REWIND 10 SECONDS (YOUTUBE)
       {
       Keyboard.write(KEY_J);
-      delay(150);
+        delay(150);
       }
   
   if(digitalRead(8)==LOW)// PAUSE (YOUTUBE)
       {
       Keyboard.write(KEY_K);
-      delay(150);
+        delay(150);
       }
       
   if(digitalRead(16)==LOW)// SKIP 10 SECONDS (YOUTUBE)
       {
       Keyboard.write(KEY_L);
-      delay(150);
+        delay(150);
       }
+  }
+}
 
 ////////////////////////////////////////////// HUNTER'S KEY INPUTS
 
 //   if(digitalRead(6)==LOW)// F20
 //       {
 //       Keyboard.write(KEY_F20);
-//       delay(50);
+//        delay(50);
 //       }
       
 //   if(digitalRead(15)==LOW)// F21
 //       {
 //       Keyboard.write(KEY_F21);
-//       delay(50);
+//        delay(50);
 //       }
       
 //   if(digitalRead(7)==LOW)// F22 
 //       {
 //       Keyboard.write(KEY_F22);
-//       delay(50);
+//        delay(50);
 //       }
   
 //   if(digitalRead(8)==LOW)// F23 (AudioSwitcher to Headset keybind)
 //       {
 //       Keyboard.write(KEY_F23);
-//       delay(50);
+//        delay(50);
 //       }
       
 //   if(digitalRead(16)==LOW)// F24 (AudioSwitcher to Speakers keybind)
 //       {
 //       Keyboard.write(KEY_F24);
-//       delay(50);
+//        delay(50);
 //       }
-//     }    
-    
-}
+//     }
