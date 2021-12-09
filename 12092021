@@ -1,7 +1,7 @@
 //      Code written by Hunter Nelson 
 //          github.com/mushinsha
 //    This is a constant work in progress
-//        Last Updated - 12/09/2021
+//        Last Updated - 11/22/2021
 
 ////////////////////////////////////////////// INCLUDED LIBRARIES
 
@@ -94,7 +94,7 @@ void setup()
   delay(1000);
 }
 
-//////////////////////////////////////////// MAIN LOOP
+//////////////////////////////////////////// MAIN CODE
 
 void loop() 
 {
@@ -116,29 +116,70 @@ void loop()
   // IF DIRECTION IS REVERSED, SWAP THE '1' AND '2' VALUES BELOW
 
   f = rotary.rotate();
-      
-  if( f == 1 ) // MEDIA VOLUME UP
+
+  if( f == 1 )
       {
-      Consumer.write(MEDIA_VOLUME_UP);
+      Consumer.write(MEDIA_VOLUME_UP); // MEDIA VOLUME UP
         delay(50);
       }
 
-  if( f == 2 ) // MEDIA VOLUME DOWN
+  if( f == 2 )
       {
-      Consumer.write(MEDIA_VOLUME_DOWN);
+      Consumer.write(MEDIA_VOLUME_DOWN); // MEDIA VOLUME DOWN
         delay(50);
       }     
         
-  if(digitalRead(ROTARY_BUTTON)==LOW)// TOGGLE MUTE
+  if(digitalRead(ROTARY_BUTTON)==LOW)
       {
-      Consumer.write(MEDIA_VOL_MUTE);
+      Consumer.write(MEDIA_VOL_MUTE); // TOGGLE MUTE
         delay(200);
       }
 
+  while(digitalRead(TOGGLE_SWITCH1)==LOW)// Function switch for MEDIA CONTROL
+    {
 
-////////////////////////////////////////////// HUNTER'S KEY INPUTS
+    if( f == 1 )
+      {
+      Consumer.write(MEDIA_NEXT); // MEDIA NEXT TRACK
+        delay(50);
+      }
 
-// /* //Beginning of block comment
+    if( f == 2 )
+      {
+      Consumer.write(MEDIA_PREVIOUS); // MEDIA PREVIOUS TRACK
+        delay(50);
+      }     
+        
+    if(digitalRead(ROTARY_BUTTON)==LOW)
+      {
+      Consumer.write(MEDIA_PLAY_PAUSE); // MEDIA PLAY/PAUSE 
+        delay(200);
+      }
+    }
+
+  while(digitalRead(TOGGLE_SWITCH2)==LOW)// Function switch for PHOTOSHOP CONTROL
+    {
+
+    if( f == 1 )
+      {
+      Keyboard.write(KEY_PERIOD); // INCREASE BRUSH SIZE
+        delay(50);
+      }
+
+    if( f == 2 )
+      {
+      Keyboard.write(KEY_COMMA); // DECREASE BRUSH SIZE
+        delay(50);
+      }     
+        
+    if(digitalRead(ROTARY_BUTTON)==LOW)
+      {
+      Keyboard.write(KEY_ENTER); // ENTER KEY
+        delay(200);
+      }
+    }
+
+////////////////////////////////////////////// BUTTON KEY INPUTS
 
     if(digitalRead(KEY_PIN5)==LOW)
       {
@@ -244,17 +285,16 @@ void loop()
     }
 
 //test to fix RGB leds pausing during button input
+  /*
+      for(int j = 0; j < 256; j++)
+    {
+      for(int i = 0; i < NUM_LEDS; i++) 
+        {
+        leds[i] = Scroll((i * 256 / NUM_LEDS + j) % 256);      
+        }
 
-    //   for(int j = 0; j < 256; j++)
-    // {
-    //   for(int i = 0; i < NUM_LEDS; i++) 
-    //     {
-    //     leds[i] = Scroll((i * 256 / NUM_LEDS + j) % 256);      
-    //     }
+    FastLED.show();
+    delay(1);
+  */
 
-    // FastLED.show();
-    // delay(1);
-    
 }
-
-// */ // End of block comment
